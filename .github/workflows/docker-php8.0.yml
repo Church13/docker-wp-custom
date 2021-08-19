@@ -35,7 +35,7 @@ jobs:
 
       - name: Copy custom.ini into container
         run: |
-          cp custom.ini /php8.0/custom.ini
+          cp custom.ini ./php8.0/custom.ini
 
       # Login against a Docker registry except on PR
       # https://github.com/docker/login-action
