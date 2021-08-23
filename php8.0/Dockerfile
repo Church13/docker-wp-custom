@@ -5,7 +5,7 @@ RUN pecl install redis && \
     curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar && \
     chmod +x wp-cli.phar && \
     mv wp-cli.phar /usr/local/bin/wp && \
-    wp plugin install easy-wp-smtp --activate && \
-    wp plugin install updraftplus --activate
+    sudo -u www-data -i -- wp plugin install easy-wp-smtp --activate && \
+    sudo -u www-data -i -- wp plugin install updraftplus --activate
 
 COPY custom.ini $PHP_INI_DIR/conf.d/
