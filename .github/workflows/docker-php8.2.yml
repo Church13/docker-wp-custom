@@ -32,11 +32,11 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
 
       - name: Copy custom.ini into container
         run: |
-          cp custom.ini ./php8.0/custom.ini
+          cp custom.ini ./php8.2/custom.ini
 
       # Login against a Docker registry except on PR
       # https://github.com/docker/login-action
@@ -56,14 +56,14 @@ jobs:
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
           tags: |
-            php8.0
+            php8.2
 
       # Build and push Docker image with Buildx (don't push on PR)
       # https://github.com/docker/build-push-action
       - name: Build and push Docker image
         uses: docker/build-push-action@v5
         with:
-          context: ./php8.0/
+          context: ./php8.2/
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
